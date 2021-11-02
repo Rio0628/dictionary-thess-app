@@ -143,8 +143,8 @@ body {
 .dctnryViewWord {
   position: relative;
   left: 6rem;
-  top: 4rem;
-  height: 50rem;
+  top: 5rem;
+  height: 45rem;
   width: 70rem;
   outline: 3px solid #5068b7;
 }
@@ -173,7 +173,7 @@ body {
 .thsrsBtn {
   position: relative;
   bottom: 4.2rem;
-  left: 57.5rem;
+  left: 57.55rem;
   font-size: 22px;
   text-align: center;
   letter-spacing: 2px;
@@ -197,44 +197,119 @@ body {
   height: 7rem;
   display: flex;
   justify-content: space-evenly;
-  outline: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .searchedWord {
   position: relative;
-  right: 5rem;
-  top: 1rem;
+  right: 4rem;
+  top: 1.5rem;
   font-size: 2.5rem;
   padding: 2px 5px; 
-  outline: 1px solid magenta;
+  /* outline: 1px solid magenta; */
 }
 
 .audioWord {
   position: relative;
-  right: 12rem;
-  top: 3rem;
-  height: 3rem;
-  width: 3rem;
-  outline: 1px solid black;
+  right: 8rem;
+  top: 4.2rem;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-image: url('./images/speakerIcon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  /* outline: 1px solid black; */
+}
+
+.audioWord:hover {
+  border-radius: 10px;
+  outline: 1px solid #e2dfdf;
+}
+
+.saveWrdBtn {
+  position: relative;
+  left: 7rem;
+  top: 4.5rem;
+  height: 2rem;
+  /* width: 3rem; */
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 1px solid gray;
+}
+
+.saveWrdBtn:hover {
+  outline: none;
+  background: #e2dfdf;
 }
 
 .prnctnWord {
   position: relative;
   left: 4rem;
-  top: 1rem;
-  font-size: 1.8rem;
-  height: 3rem;
+  top: 2.5rem;
+  font-size: 1.6rem;
+  height: 2.5rem;
   padding: 2px 5px; 
-  outline: 1px solid black;
+  /* outline: 1px solid black; */
 }
 
+.mainWrdDef {
+  position: relative;
+  left: 3rem;
+  top: 1rem;
+  height: 4rem;
+  width: 63rem;
+  font-size: 22px;
+  /* outline: 1px solid blue; */
+}
+
+.otherMeaningsWrd {
+  position: relative;
+  left: 3rem;
+  top: 2rem;
+  width: 55rem;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+.otherDefsWrdCntr {
+  position: relative;
+  top: 2rem;
+  /* margin-top: 5px; */
+  left: 3rem;
+  width: 60rem;
+  height: 5rem;
+  display: flex;
+  border-bottom: 1px solid black;
+}
+
+.meaningNmb {
+  position: relative;
+  left: 10px;
+  /* bottom: 5px; */
+  font-size: 1.5rem;
+  color: gray;
+  /* outline: 1px solid blue; */
+}
+
+.otherDefWrd {
+  position: relative;
+  left: 20px;
+  top: 10px;
+  width: 56rem;
+  font-size: 18px;
+  height: 2rem;
+  /* outline: 1px solid red; */
+}
+
+
+
 /*  
-                <div className='mainInfoWrd'>
-                    <h2 className='searchedWord'>Sample Word</h2>
-                    <div className='audioWord'></div>
-                    <h3 className='prnctnWord'>Sample pronc</h3>
-                </div>
-                <p clasName='mainWrdDef'>This is the definition for the main word (This is a sample)</p>
                 
                 <h3 className='otherMeaningsWrd'>Other Meanings of Word (Provisional Title)</h3>
                 
