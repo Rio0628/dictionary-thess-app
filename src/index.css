@@ -5,6 +5,10 @@ body {
   margin: 0;
 }
 
+.container {
+  height: 48rem;
+}
+
 /* -- HEADBAR STYLES -- */
 
 .headbarContainer {
@@ -12,6 +16,7 @@ body {
   flex-direction: row;
   justify-content: space-evenly;
   padding: 5px 10px;
+  /* height: 4rem; */
   background: #5068b7;
 }
 
@@ -29,6 +34,12 @@ body {
   background: #fff;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.appLogo.opened {
+  position: relative;
+  right: 13.5rem;
+  box-shadow: 3px -3px 8px #2b4570, -3px 3px 8px #2b4570;
 }
 
 .appLogo span {
@@ -110,13 +121,61 @@ body {
   background: #e2dfdf;
   font-weight: 600;
 }
-/* 
- <p className='dictionaryLogo'><span>Dicti</span>onary</p>
-        
-          <div className='searchbarContainer'>
-            <input type='text' className='searchbar'/>
-            <div className='searchbarBtn'></div>
-          </div>
 
-          <div className='loginBtn'>Login</div>
+/* -- MAIN VIEW DICTIONARY STYLES -- */
+
+.mainViewDctnry {
+  position: relative;
+  /* bottom: 20px; */
+  height: 53.8rem;
+  outline: 1px solid red;
+}
+
+/* -- SIDEBAR STYLES -- */
+
+.sidebar {
+  position: relative;
+  /* bottom: 15px; */
+  height: 53.6rem;
+  width: 19rem;
+  background: #5068b7;
+  color: #e5ece9;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 2px 10px;
+  box-shadow: 3px -3px 8px #2b4570;
+  /* border-bottom: 1px solid #2b4570; */
+  outline: 1px solid black;
+}
+
+.wordOfDay, .suggestWord, .savedWords {
+  position: relative;
+  bottom: -2rem;
+  left: 1rem;
+  width: 15rem;
+  text-align: center;
+  padding: 2px 5px;
+  cursor: pointer;
+  /* outline: 1px solid red; */
+}
+
+.suggestWord {
+  bottom: 4rem;
+}
+
+.savedWords {
+  bottom: 9rem;
+}
+
+.wordOfDay:hover, .suggestWord:hover, .savedWords:hover {
+  box-shadow: 0px 1px 3px #e5ece9,  0px -1px 3px #e5ece9;
+}
+
+/* 
+<div className='sidebar'>
+          <p className='wordOfDay'>Word of The Day</p>
+          <p className='suggestWord'>Suggest a Word</p>
+          <p className='savedWords'>Saved Words</p>
         </div> */
