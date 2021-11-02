@@ -307,15 +307,113 @@ body {
   /* outline: 1px solid red; */
 }
 
+/* -- THESAURUS STYLES -- */
+
+.thsrsViewWord {
+  position: relative;
+  left: 6rem;
+  top: 5rem;
+  height: 45rem;
+  width: 70rem;
+  outline: 3px solid #5068b7;
+}
+
+.synmsHeading {
+  position: relative;
+  left: 2rem;
+  width: 14rem;
+  text-align: center;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  padding: 2px 5px;
+  border-bottom: 1px solid gray;
+}
+
+.synmsContainer {
+  position: relative;
+  bottom: 25px;
+  left: 2rem;
+  width: 50rem;
+  height: 9rem;
+  padding: 0px 10px;
+  /* outline: 1px solid black; */
+  display: grid;
+  grid-template-columns: repeat(5, 10.5rem);
+  grid-template-rows: 35px 35px 35px 35px;
+}
+
+.synonymWrd {
+  height: 1.2rem;
+  width: 9rem;
+  padding: 2px 5px;
+  font-weight: 600;
+  outline: 1px solid gray;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.synonymWrd:hover {
+  outline: none;
+  background: #e2dfdf;
+}
+
+.antnymHeading {
+  position: relative;
+  left: 2rem;
+  width: 14rem;
+  text-align: center;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  padding: 2px 5px;
+  border-bottom: 1px solid gray;
+}
+
+.antnymContainer {
+  position: relative;
+  left: 2rem;
+  bottom: 1.5rem;
+  width: 50rem;
+  height: 9rem;
+  padding: 0px 10px;
+  /* outline: 1px solid black; */
+  display: grid;
+  grid-template-columns: repeat(5, 10.5rem);
+  grid-template-rows: 35px 35px 35px 35px;
+}
+
+.antnymWrd {
+  height: 1.2rem;
+  width: 9rem;
+  padding: 2px 5px;
+  font-weight: 600;
+  outline: 1px solid gray;
+  cursor: pointer;
+  border-radius: 8px; 
+}
+
+.antnymWrd:hover {
+  outline: none;
+  background: #e2dfdf;
+}
 
 
-/*  
-                
-                <h3 className='otherMeaningsWrd'>Other Meanings of Word (Provisional Title)</h3>
-                
-                <div className='otherDefsWrdCntr'>
-                    <p className='meaningNmb'>Meaning One</p>
-                    <p className='otherDefWrd'>This is a sample of another definition of the main word</p>
+/* 
+ <div className='thsrsViewWord'>
+              
+                <h3 className='synmsHeading'>Synonyms</h3>
+                <div className='synmsContainer'>
+                    <p className='synonymWrd'>Synonym 1</p>
+                    <p className='synonymWrd'>Synonym 2</p>
+                    <p className='synonymWrd'>Synonym 3</p>
+                    <p className='synonymWrd'>Synonym 4</p>
+                </div>
+
+                <h3 className='antnymHeading'>Antonyms</h3>
+                <div className='antnymContainer'>
+                    <p className='antnymWrd'>Antonym 1</p>
+                    <p className='antnymWrd'>Antonym 2</p>
+                    <p className='antnymWrd'>Antonym 3</p>
+                    <p className='antnymWrd'>Antonym 4</p>
                 </div>
             </div> */
 
