@@ -9,6 +9,15 @@ body {
   height: 48rem;
 }
 
+.mainViewDctnry {
+  position: relative;
+  /* bottom: 20px; */
+  height: 53.8rem;
+  max-height: 53.8rem;
+  display: flex;
+  outline: 1px solid red;
+}
+
 /* -- HEADBAR STYLES -- */
 
 .headbarContainer {
@@ -124,12 +133,116 @@ body {
 
 /* -- MAIN VIEW DICTIONARY STYLES -- */
 
-.mainViewDctnry {
+.mainWordContainer {
   position: relative;
-  /* bottom: 20px; */
-  height: 53.8rem;
+  left: 21rem;
+  width: 96rem;
   outline: 1px solid red;
 }
+
+.dctnryViewWord {
+  position: relative;
+  left: 6rem;
+  top: 4rem;
+  height: 50rem;
+  width: 70rem;
+  outline: 3px solid #5068b7;
+}
+
+.dctnryBtn {
+  position: relative;
+  bottom: 2.2rem;
+  right: 3px;
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: 800; 
+  color: #e5ece9;
+  padding: 2px 5px; 
+  width: 12rem;
+  border-radius: 10px 10px 0px 0px;
+  background: #5068b7;
+  cursor: pointer;
+}
+
+.dctnryBtn:hover {
+  background: #2b4570;
+}
+
+
+.thsrsBtn {
+  position: relative;
+  bottom: 4.2rem;
+  left: 57.5rem;
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: 800; 
+  color: #e5ece9;
+  padding: 2px 5px; 
+  width: 12rem;
+  border-radius: 10px 10px 0px 0px;
+  background: rgba(12, 70, 22, .8);
+  cursor: pointer;
+}
+
+.thsrsBtn:hover {
+  background: rgba(12, 70, 22, 1);
+}
+
+.mainInfoWrd {
+  position: relative;
+  left: 2rem;
+  width: 65rem;
+  height: 7rem;
+  display: flex;
+  justify-content: space-evenly;
+  outline: 1px solid black;
+}
+
+.searchedWord {
+  position: relative;
+  right: 5rem;
+  top: 1rem;
+  font-size: 2.5rem;
+  padding: 2px 5px; 
+  outline: 1px solid magenta;
+}
+
+.audioWord {
+  position: relative;
+  right: 12rem;
+  top: 3rem;
+  height: 3rem;
+  width: 3rem;
+  outline: 1px solid black;
+}
+
+.prnctnWord {
+  position: relative;
+  left: 4rem;
+  top: 1rem;
+  font-size: 1.8rem;
+  height: 3rem;
+  padding: 2px 5px; 
+  outline: 1px solid black;
+}
+
+/*  
+                <div className='mainInfoWrd'>
+                    <h2 className='searchedWord'>Sample Word</h2>
+                    <div className='audioWord'></div>
+                    <h3 className='prnctnWord'>Sample pronc</h3>
+                </div>
+                <p clasName='mainWrdDef'>This is the definition for the main word (This is a sample)</p>
+                
+                <h3 className='otherMeaningsWrd'>Other Meanings of Word (Provisional Title)</h3>
+                
+                <div className='otherDefsWrdCntr'>
+                    <p className='meaningNmb'>Meaning One</p>
+                    <p className='otherDefWrd'>This is a sample of another definition of the main word</p>
+                </div>
+            </div> */
 
 /* -- SIDEBAR STYLES -- */
 
@@ -138,6 +251,7 @@ body {
   /* bottom: 15px; */
   height: 53.6rem;
   width: 19rem;
+  margin-left: -300rem;
   background: #5068b7;
   color: #e5ece9;
   font-size: 25px;
@@ -148,6 +262,12 @@ body {
   box-shadow: 3px -3px 8px #2b4570;
   /* border-bottom: 1px solid #2b4570; */
   outline: 1px solid black;
+}
+
+.sidebar.active {
+  right: 96rem;
+  margin-left: 0;
+  transition: color .3s;
 }
 
 .wordOfDay, .suggestWord, .savedWords {
