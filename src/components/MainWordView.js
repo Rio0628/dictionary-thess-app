@@ -1,5 +1,5 @@
 import React from  'react';
-import OtherDefsWrd from './OtherDefsWrd';
+// import OtherDefsWrd from './OtherDefsWrd';
 
 const MainWordView = () => {
     return (

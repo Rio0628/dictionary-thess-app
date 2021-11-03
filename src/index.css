@@ -32,9 +32,9 @@ body {
 
 .appLogo {
   position: relative;
-  right: 7rem;
+  right: 18rem;
   bottom: 0px;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-family: 'Zen Antique';
   font-weight: 600;
   text-align: center;
@@ -59,10 +59,10 @@ body {
 
 .searchbarContainer {
   position: relative;
-  right: 1rem;
+  right: 17rem;
   top: 14px;
-  width: 30rem;
-  height: 2rem;
+  width: 40rem;
+  height: 2.3rem;
   padding: 3px;
   display: flex;
   justify-content: space-between;
@@ -76,8 +76,9 @@ body {
   position: relative;
   left: 5px;
   top: -1.5px;
-  width: 25.5rem;
-  height: 1.8rem;
+  width: 35rem;
+  height: 2rem;
+  font-size: 20px;
   padding: 3px 5px;
   border: none;
   /* outline: 1px solid #e2dfdf; */
@@ -91,8 +92,8 @@ body {
   position: relative;
   bottom: 3px;
   left: 3px;
-  height: 2.2rem;
-  width: 2.5rem;
+  height: 2.5rem;
+  width: 3rem;
   padding: 2px;
   /* border-radius: 50%; */
   /* outline: 1px solid #e2dfdf ; */
@@ -107,29 +108,9 @@ body {
   position: relative;
   left: 8px;
   top: 4px;
-  height: 25px;
-  width: 25px;
+  height: 30px;
+  width: 30px;
   pointer-events: none;
-}
-
-.loginBtn {
-  position: relative;
-  left: 5rem;
-  top: 20px;
-  height: 1.4rem;
-  width: 5rem;
-  font-size: 18px;
-  text-align: center;
-  border-radius: 5px;
-  padding: 2px 5px;
-  outline: 1px solid #e2dfdf;
-  background: #fff;
-  cursor: pointer;
-}
-
-.loginBtn:hover {
-  background: #e2dfdf;
-  font-weight: 600;
 }
 
 /* -- MAIN VIEW DICTIONARY STYLES -- */
