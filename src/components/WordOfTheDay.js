@@ -1,14 +1,20 @@
 import React from 'react';
 
-const WordOfTheDay = () => {
+const WordOfTheDay = (props) => {
+    let synContainer = []
+
+    for (let i = 0; i < 3; i++) {
+        synContainer.push( <p className='synDayWrd' key={'key ' + i} onClick={props.onClick}>Synonym</p> );
+    }
+
     return (
         <div className='wrdOfDayCntr'>
             <h1 className='wordHeading'>Sample Word</h1>
             <div className='pron-audioContainer'>
                 <div className='prnctnWrd'>[ sam-puhl, sahm- ]</div>
-                <div className='audioWrd'></div>
+                <div className='audioWrd' onClick={props.onClick}></div>
                 <div className='lineBreak'></div>
-                <div className='saveBtn'>Save</div>
+                <div className='saveBtn' onClick={props.onClick}>Save</div>
             </div>
 
             <div className='infoWrdMngContainer'>
@@ -24,9 +30,7 @@ const WordOfTheDay = () => {
             <div className='mainSynonymCntr'>
                 <h3 className='synonymHeading'>Synonyms</h3>
                 <div className='synonymsCntr'>
-                    <p className='synDayWrd'>Synonym</p>
-                    <p className='synDayWrd'>Synonym</p>
-                    <p className='synDayWrd'>Synonym</p>
+                    {synContainer}
                 </div>
             </div>
             
