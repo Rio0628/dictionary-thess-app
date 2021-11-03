@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import searchIcon from './images/searchIcon.png';
 import MainWordView from './components/MainWordView';
+import WordOfTheDay from './components/WordOfTheDay';
 
 export default class App extends Component {
   render () {
@@ -17,7 +18,8 @@ export default class App extends Component {
           
         <div className='mainViewDctnry'>
 
-          <MainWordView />
+          {/* <MainWordView /> */}
+          <WordOfTheDay />
           <div className='sidebar'>
               <p className='wordOfDay'>Word of The Day</p>
               <p className='suggestWord'>Suggest a Word</p>

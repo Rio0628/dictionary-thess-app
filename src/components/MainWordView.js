@@ -4,7 +4,7 @@ import OtherDefsWrd from './OtherDefsWrd';
 const MainWordView = () => {
     return (
         <div className='mainWordContainer'>
-            <div className='dctnryViewWord'>
+            {/* <div className='dctnryViewWord'>
                 <div className='dctnryBtn'>Dictionary</div>
                 <div className='thsrsBtn'>Thesaurus</div>
                 <div className='mainInfoWrd'>
@@ -16,15 +16,15 @@ const MainWordView = () => {
                 <p className='mainWrdDef'>This is the definition for the main word (This is a sample)</p>
                 
                 <h3 className='otherMeaningsWrd'>Other Meanings of Word (Provisional Title)</h3>
-                 {/* Once the component is made and the call to the API is made this object will be passed as an individual component so automize the multiple meanings */}
+                 Once the component is made and the call to the API is made this object will be passed as an individual component so automize the multiple meanings
                 
                 <OtherDefsWrd number='1' />
                 <OtherDefsWrd number='2'/>
                 <OtherDefsWrd number='3'/>
-            </div>
+            </div> */}
             
 
-            {/* <div className='thsrsViewWord'>
+            <div className='thsrsViewWord'>
                 <div className='dctnryBtn'>Dictionary</div>
                 <div className='thsrsBtn'>Thesaurus</div>
                 <div className='mainInfoWrd'>
@@ -50,7 +50,7 @@ const MainWordView = () => {
                     <p className='antnymWrd'>Antonym 3</p>
                     <p className='antnymWrd'>Antonym 4</p>
                 </div>
-            </div> */}
+            </div>
           </div>
     );
 }

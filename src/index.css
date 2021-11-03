@@ -3,6 +3,7 @@
 body {
   font-family: 'Source Code Pro';
   margin: 0;
+  background: #fff;
 }
 
 .container {
@@ -15,7 +16,7 @@ body {
   height: 53.8rem;
   max-height: 53.8rem;
   display: flex;
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
 }
 
 /* -- HEADBAR STYLES -- */
@@ -26,7 +27,7 @@ body {
   justify-content: space-evenly;
   padding: 5px 10px;
   /* height: 4rem; */
-  background: #5068b7;
+  background: linear-gradient(#2b4570, #5068b7);
 }
 
 .appLogo {
@@ -396,26 +397,214 @@ body {
   background: #e2dfdf;
 }
 
+/* -- WORD OF DAY STYLES -- */
 
-/* 
- <div className='thsrsViewWord'>
-              
-                <h3 className='synmsHeading'>Synonyms</h3>
-                <div className='synmsContainer'>
-                    <p className='synonymWrd'>Synonym 1</p>
-                    <p className='synonymWrd'>Synonym 2</p>
-                    <p className='synonymWrd'>Synonym 3</p>
-                    <p className='synonymWrd'>Synonym 4</p>
-                </div>
+.wrdOfDayCntr {
+  position: relative;
+  left: 21rem;
+  width: 96rem;
+  /* outline: 1px solid red; */
+}
 
-                <h3 className='antnymHeading'>Antonyms</h3>
-                <div className='antnymContainer'>
-                    <p className='antnymWrd'>Antonym 1</p>
-                    <p className='antnymWrd'>Antonym 2</p>
-                    <p className='antnymWrd'>Antonym 3</p>
-                    <p className='antnymWrd'>Antonym 4</p>
-                </div>
-            </div> */
+.wordHeading {
+  position: relative;
+  left: 18rem;
+  top: 3rem;
+  width: 40rem;
+  text-align: center;
+  font-size: 3.5rem;
+  letter-spacing: 3px;
+  padding: 2px 5px;
+  /* outline: 1px solid black; */
+}
+
+.pron-audioContainer {
+  position: relative;
+  top: 1rem;
+  left: 12rem;
+  width: 55rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.4rem;
+  padding: 2px 25px;
+  border-bottom: 1px solid gray;
+}
+
+.prnctnWrd {
+  position: relative;
+  top: 2px;
+  left: 3rem;
+  height: 2.2rem;
+  padding: 0px 1.8rem 0px 0px;
+  border-right: 1px solid black;
+}
+
+.audioWrd {
+  position: relative;
+  top: 2px;
+  right: 1.5rem;
+  height: 2.2rem;
+  width: 2.5rem;
+  background-image: url('./images/speakerIcon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  cursor: pointer;
+  /* outline: 1px solid red; */
+}
+
+.audioWrd:hover {
+  outline: 1px solid #e2dfdf;
+}
+
+.lineBreak {
+  position: relative;
+  right: 6.2rem;
+  top: 2px;
+  height: 2.3rem;
+  border-left: 1px solid black;
+}
+
+.saveBtn {
+  position: relative;
+  top: 2px;
+  right: 10rem;
+  height: 2rem;
+  width: 5rem;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  padding: 0px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 1px solid gray;
+}
+
+.saveBtn:hover {
+  outline: none;
+  background: #e2dfdf;
+}
+
+.infoWrdMngContainer {
+  position: relative;
+  left: 2rem;
+  top: 2rem;
+  width: 80rem;
+  height: 10rem;  
+  /* outline: 1px solid red; */
+  box-shadow: 1px 1px 6px #e2dfdf, -1px -1px 6px #e2dfdf;
+}
+
+.dfntnHeading {
+  position: relative;
+  top: 12px;
+  left: 12px;
+  height: 1.7rem;
+  width: 12rem;
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: 3px;
+  padding: 2px 5px;
+  /* outline: 1px solid black; */
+}
+
+.mainDefWrd {
+  position: relative;
+  top: 4px;
+  left: 12px;
+  width: 70rem;
+  height: 3rem;
+  font-size: 22px;
+  padding: 2px 5px;
+  /* outline: 1px solid blue; */
+}
+
+.exmapleContainer {
+  position: relative;
+  left: 2rem;
+  top: 2rem;
+  width: 80rem;
+  height: 10rem;  
+  /* outline: 1px solid red; */
+  box-shadow: 1px 1px 6px #e2dfdf, -1px -1px 6px #e2dfdf;
+}
+
+.exampleHeading {
+  position: relative;
+  top: 8px;
+  right: 8px;
+  height: 1.7rem;
+  width: 12rem;
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: 3px;
+  padding: 2px 5px;
+}
+
+.exampleOfWrd {
+  position: relative;
+  top: 4px;
+  left: 12px;
+  width: 70rem;
+  height: 3rem;
+  font-size: 22px;
+  padding: 2px 5px;
+}
+
+.mainSynonymCntr {
+  position: relative;
+  left: 2rem;
+  top: 2rem;
+  width: 80rem;
+  height: 12rem;  
+  box-shadow: 1px 1px 6px #e2dfdf, -1px -1px 6px #e2dfdf;
+}
+
+.synonymHeading {
+  position: relative;
+  top: 8px;
+  right: 8px;
+  height: 1.7rem;
+  width: 12rem;
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: 3px;
+  padding: 2px 5px;
+}
+
+.synonymsCntr {
+  position: relative;
+  left: 10px;
+  height: 7rem;
+  width: 70rem;
+  display: grid;
+  grid-template-columns: repeat(5, 10.5rem);
+  grid-template-rows: 35px 35px 35px 35px;
+  /* outline: 1px solid black;  */
+}
+
+.synDayWrd {
+  position: relative;
+  /* left: 20px; */
+  height: 1.2rem;
+  width: 9rem;
+  padding: 2px 5px;
+  font-weight: 600;
+  outline: 1px solid gray;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.synDayWrd:hover {
+  outline: none;
+  background: #e2dfdf;
+}
+
+.synDayWrd:active {
+  outline: 1px solid #758bfd;
+  background: none;
+}
 
 /* -- SIDEBAR STYLES -- */
 
@@ -425,7 +614,7 @@ body {
   height: 53.6rem;
   width: 19rem;
   margin-left: -300rem;
-  background: #5068b7;
+  background: linear-gradient(to right,#2b4570, #5068b7);
   color: #e5ece9;
   font-size: 25px;
   display: flex;
@@ -463,12 +652,6 @@ body {
 }
 
 .wordOfDay:hover, .suggestWord:hover, .savedWords:hover {
-  box-shadow: 0px 1px 3px #e5ece9,  0px -1px 3px #e5ece9;
+  text-decoration: underline;
+  /* box-shadow: 0px 1px 3px #e5ece9,  0px -1px 3px #e5ece9; */
 }
-
-/* 
-<div className='sidebar'>
-          <p className='wordOfDay'>Word of The Day</p>
-          <p className='suggestWord'>Suggest a Word</p>
-          <p className='savedWords'>Saved Words</p>
-        </div> */
