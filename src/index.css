@@ -30,6 +30,10 @@ body {
   background: linear-gradient(#2b4570, #5068b7);
 }
 
+.headbarContainer.thesaurus {
+  background: linear-gradient( rgba(12, 70, 22, 1) ,rgba(12, 70, 22, .8));
+}
+
 .appLogo {
   position: relative;
   right: 18rem;
@@ -298,6 +302,10 @@ body {
   height: 45rem;
   width: 70rem;
   outline: 3px solid #5068b7;
+}
+
+.thsrsViewWord.thesaurus {
+  outline: 3px solid rgba(12, 70, 22, .8);
 }
 
 .synmsHeading {
@@ -601,6 +609,11 @@ body {
   right: 96rem;
   margin-left: 0;
   transition: color .3s;
+}
+
+.sidebar.thesaurus {
+  background: linear-gradient(to right, rgba(12, 70, 22, 1) ,rgba(12, 70, 22, .8));
+  box-shadow: 3px -3px 8px rgba(12, 70, 22, 1);
 }
 
 .wordOfDay, .suggestWord, .savedWords {

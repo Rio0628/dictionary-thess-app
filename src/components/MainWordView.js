@@ -34,7 +34,7 @@ const MainWordView = (props) => {
                     <OtherDefsWrd number='3' />
                 </div>
             :
-                <div className='thsrsViewWord'>
+                <div className={'thsrsViewWord ' + props.palette}>
                     <div className='dctnryBtn' onClick={props.onClick}>Dictionary</div>
                     <div className='thsrsBtn' onClick={props.onClick}>Thesaurus</div>
                     <div className='mainInfoWrd'>
