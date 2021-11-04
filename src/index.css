@@ -186,21 +186,23 @@ body {
   height: 7rem;
   display: flex;
   justify-content: space-evenly;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
 }
 
 .searchedWord {
   position: relative;
   right: 4rem;
-  top: 1.5rem;
+  top: 1.6rem;
+  width: 14rem;
   font-size: 2.5rem;
+  text-align: center;
   padding: 2px 5px; 
   /* outline: 1px solid magenta; */
 }
 
 .audioWord {
   position: relative;
-  right: 8rem;
+  right: 7rem;
   top: 4.2rem;
   height: 2.5rem;
   width: 2.5rem;
@@ -237,22 +239,43 @@ body {
 
 .prnctnWord {
   position: relative;
-  left: 4rem;
-  top: 2.5rem;
+  left: 3rem;
+  top: 2.7rem;
   font-size: 1.6rem;
-  height: 2.5rem;
+  height: 2.2rem;
+  width: 16rem;
+  text-align: center;
   padding: 2px 5px; 
   /* outline: 1px solid black; */
+  overflow: hidden;
+}
+
+.typeWrd {
+  position: relative;
+  left: 2.2rem;
+  bottom: 10px;
+  width: 13rem;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 3px;
+  /* outline: k1px solid red; */
 }
 
 .mainWrdDef {
   position: relative;
   left: 3rem;
-  top: 1rem;
-  height: 4rem;
+  bottom: 10px;
+  height: 9rem;
   width: 63rem;
   font-size: 22px;
   /* outline: 1px solid blue; */
+}
+
+.otherMeaningsCntr {
+  position: relative;
+  bottom: 4rem;
+  /* outline: 1px solid red; */
 }
 
 .otherMeaningsWrd {
@@ -292,7 +315,8 @@ body {
   top: 10px;
   width: 56rem;
   font-size: 18px;
-  height: 2rem;
+  height: 3rem;
+  overflow: hidden;
   /* outline: 1px solid red; */
 }
 

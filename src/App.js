@@ -11,13 +11,13 @@ export default class App extends Component {
     this.navWrapperRef = React.createRef();
     this.wrdsWrapperRef = React.createRef();
     this.state = {
-      mainCompTriggered: true,
+      mainCompTriggered: false,
       sidebarTriggered: false, 
       dctnryTriggered: true,
       thsrsTriggered: false, 
       wrdOfDayTriggered: false,
       wordSaved: false, 
-      searchInput: '',
+      searchInput: 'house',
     };
   }
   
@@ -32,7 +32,7 @@ export default class App extends Component {
       }
     }
 
-    const onClick = (e) => {
+    const onClick = async (e) => {
       console.log(e.target);
       
       if (e.target.className === 'appLogo' || e.target.className === 'wordOfDay' || e.target.className === 'suggestWord') {
@@ -73,13 +73,25 @@ export default class App extends Component {
         const wrapper = this.wrdsWrapperRef.current;
         wrapper.classList.toggle('active');
       }
+
+      if (e.target.className === 'searchbarBtn') {
+        let dataAPI;
+    
+        await Axios.get(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${this.state.searchInput}?key=b2d6053e-0412-4ae8-b6a0-a0ff8a827bac`).then(data => dataAPI = data.data[0]);
+    
+        let object = {word: this.state.searchInput, type: dataAPI.fl, defs: dataAPI.shortdef, pronounciation: dataAPI.hwi.prs[0].mw, audio: dataAPI.hwi.prs[0].sound}
+        this.setState({ currentWord: object });
+        this.setState({ mainCompTriggered: true });
+      }
     }
+
+    console.log(this.state.currentWord);
 
     for (let i = 0; i < 10; i++) {
       indSvdWrdContainer.push( <IndSavedWord onClick={onClick} key={'word ' + i} /> );
     }
 
-    Axios.get(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/pancake?key=b2d6053e-0412-4ae8-b6a0-a0ff8a827bac`).then(data => console.log(data.data));
+    
 
     return (
       <div className='container'>
@@ -106,7 +118,7 @@ export default class App extends Component {
 
           {this.state.wrdOfDayTriggered ? <WordOfTheDay onClick={onClick}/> : null }
 
-          {this.state.mainCompTriggered ? <MainWordView onClick={onClick} state={this.state.dctnryTriggered} palette={this.state.appPalette}/> : null}
+          {this.state.mainCompTriggered ? <MainWordView info={this.state.currentWord} onClick={onClick} state={this.state.dctnryTriggered} palette={this.state.appPalette}/> : null}
           
           {/* <WordOfTheDay onClick={onClick}/> */}
           
