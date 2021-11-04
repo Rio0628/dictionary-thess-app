@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 import searchIcon from './images/searchIcon.png';
 import MainWordView from './components/MainWordView';
 import WordOfTheDay from './components/WordOfTheDay';
@@ -30,7 +31,7 @@ export default class App extends Component {
         this.setState({ searchInput: e.target.value });
       }
     }
-    console.log(this.state.searchInput)
+
     const onClick = (e) => {
       console.log(e.target);
       
@@ -78,8 +79,7 @@ export default class App extends Component {
       indSvdWrdContainer.push( <IndSavedWord onClick={onClick} key={'word ' + i} /> );
     }
 
-    // console.log(this.state.appPalette)
-    // console.log(this.state.thsrsTriggered)
+    Axios.get(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/pancake?key=b2d6053e-0412-4ae8-b6a0-a0ff8a827bac`).then(data => console.log(data.data));
 
     return (
       <div className='container'>
