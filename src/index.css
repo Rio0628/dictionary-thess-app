@@ -623,7 +623,7 @@ body {
 
 .wordOfDay, .suggestWord, .savedWords {
   position: relative;
-  bottom: -2rem;
+  bottom: -4rem;
   left: 1rem;
   width: 15rem;
   text-align: center;
@@ -632,15 +632,77 @@ body {
   /* outline: 1px solid red; */
 }
 
-.suggestWord {
-  bottom: 4rem;
-}
-
-.savedWords {
-  bottom: 9rem;
-}
-
 .wordOfDay:hover, .suggestWord:hover, .savedWords:hover {
   text-decoration: underline;
   /* box-shadow: 0px 1px 3px #e5ece9,  0px -1px 3px #e5ece9; */
 }
+
+.savedWrdsContainer {
+  position: relative;
+  bottom: .5rem;
+  height: 16rem;
+  border-radius: 10px;
+  outline: 1px solid #2b4570;
+  padding: 5px 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  opacity: 0;
+  transition: opacity 0.125s;
+}
+
+.savedWrdsContainer.active {
+  opacity: 1;
+}
+
+.savedWrdsContainer::-webkit-scrollbar {
+  width: 10px;
+  background: #5068b7;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.savedWrdsContainer::-webkit-scrollbar-thumb {
+  background: #2b4570;
+  border-radius: 10px;
+}
+
+.savedWrdsContainer.thesaurus {
+  outline: 1px solid rgba(12, 70, 22, 1);
+}
+
+.savedWrdsContainer.thesaurus::-webkit-scrollbar {
+  width: 10px;
+  background: rgba(12, 70, 22, .3);
+  border-radius: 0px 10px 10px 0px;
+}
+
+.savedWrdsContainer.thesaurus::-webkit-scrollbar-thumb {
+  background: rgba(12, 70, 22, 1);
+  border-radius: 10px;
+}
+
+.indSavedWrd {
+  position: relative;
+  left: 2.2rem;
+  width: 13rem;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  padding: 2px 5px;
+  cursor: pointer;
+  /* outline: 1px solid white; */
+}
+
+.indSavedWrd:hover {
+  text-decoration: underline;
+}
+
+/* savedWrdsContainer */
+
+/* 
+const IndSavedWord = () => {
+    return (
+        <p className='indSavedWrd'>Saved Word</p>
+    )
+}
+
+export default IndSavedWord; */
