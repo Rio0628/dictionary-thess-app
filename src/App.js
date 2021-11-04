@@ -6,6 +6,7 @@ import WordOfTheDay from './components/WordOfTheDay';
 export default class App extends Component {
   constructor(props) {
     super(props);
+    this.wrapperRef = React.createRef();
     this.state = {
       mainCompTriggered: true,
       sidebarTriggered: false, 
@@ -21,7 +22,10 @@ export default class App extends Component {
     const onClick = (e) => {
       console.log(e.target);
       
-      if (e.target.className === 'appLogo') { this.setState({ sidebarTriggered: !this.state.sidebarTriggered }); }
+      if (e.target.className === 'appLogo') {
+        const wrapper = this.wrapperRef.current;
+        wrapper.classList.toggle('active');   
+      }
 
       if (e.target.className === 'dctnryBtn' || e.target.className === 'suggestWord') {
         this.setState({ dctnryTriggered: true })
@@ -47,7 +51,6 @@ export default class App extends Component {
         this.setState({ wrdOfDayTriggered: true });
       }
     }
-  
 
     console.log(this.state.appPalette)
     console.log(this.state.thsrsTriggered)
@@ -62,8 +65,14 @@ export default class App extends Component {
           </div>
         </div>
           
+        <div ref={this.wrapperRef} className={'sidebar ' + this.state.appPalette}>
+            <p className='wordOfDay' onClick={onClick}>Word of The Day</p>
+            <p className='suggestWord' onClick={onClick}>Suggest a Word</p>
+            <p className='savedWords' onClick={onClick}>Saved Words</p>
+        </div>
+
+
         <div className='mainViewDctnry'>
-          
 
           {this.state.wrdOfDayTriggered ? <WordOfTheDay onClick={onClick}/> : null }
 
@@ -71,13 +80,6 @@ export default class App extends Component {
           
           {/* <WordOfTheDay onClick={onClick}/> */}
           
-          <div className={'sidebar active ' + this.state.appPalette}>
-            <p className='wordOfDay' onClick={onClick}>Word of The Day</p>
-            <p className='suggestWord' onClick={onClick}>Suggest a Word</p>
-            <p className='savedWords' onClick={onClick}>Saved Words</p>
-          </div>
-
-
         </div>
         
       </div>

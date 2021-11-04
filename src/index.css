@@ -12,8 +12,10 @@ body {
 
 .mainViewDctnry {
   position: relative;
-  /* bottom: 20px; */
+  left: 20.5rem;
+  bottom: 53.9rem;
   height: 53.8rem;
+  width: 98.1rem;
   max-height: 53.8rem;
   display: flex;
   /* outline: 1px solid red; */
@@ -121,8 +123,9 @@ body {
 
 .mainWordContainer {
   position: relative;
-  left: 19.5rem;
+  /* left: 19.5rem; */
   width: 96rem;
+  z-index: 1;
   /* outline: 1px solid red; */
 }
 
@@ -380,7 +383,7 @@ body {
 
 .wrdOfDayCntr {
   position: relative;
-  left: 21rem;
+  /* left: 7rem; */
   width: 96rem;
   /* outline: 1px solid red; */
 }
@@ -603,12 +606,14 @@ body {
   box-shadow: 3px -3px 8px #2b4570;
   /* border-bottom: 1px solid #2b4570; */
   outline: 1px solid black;
+  z-index: 0;
+  transition: margin .5s;
 }
 
 .sidebar.active {
-  right: 96rem;
+  /* right: 96rem; */
   margin-left: 0;
-  transition: color .3s;
+  transition: margin .125s;
 }
 
 .sidebar.thesaurus {
