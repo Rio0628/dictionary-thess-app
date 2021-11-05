@@ -65,7 +65,7 @@ const MainWordView = (props) => {
                     <div className='mainInfoWrd'>
                         <h2 className='searchedWord'>{capitalize(props.info.word)}</h2>
                         <div className='audioWord' onClick={props.onClick}></div>
-                        <div className='saveWrdBtn' onClick={props.onClick}>save</div>
+                        <div className='saveWrdBtn' onClick={props.onClick}>{props.isWrdSaved ? 'saved' : 'save'}</div>
                         <h3 className='prnctnWord'>[ {props.info.pronounciation} ]</h3>
                     </div>
                     <p className='typeWrd'>{capitalize(props.info.type)}</p>

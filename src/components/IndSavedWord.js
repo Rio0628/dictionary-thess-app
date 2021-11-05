@@ -1,8 +1,18 @@
 import React from 'react';
 
 const IndSavedWord = (props) => {
+
+    const capitalize = (s) => {
+        if (typeof s !== 'string') return ''
+        return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+
     return (
-        <p className='indSavedWrd' onClick={props.onClick}>Saved Word</p>
+        <div className='indSavedWrdCntr'>
+            <p className='indSavedWrd' name={props.word} onClick={props.onClick}>{capitalize(props.word)}</p>
+            <p className='removeBtn'>X</p>
+        </div>
+        
     )
 }
 

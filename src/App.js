@@ -18,12 +18,30 @@ export default class App extends Component {
       wrdOfDayTriggered: false,
       wordSaved: false, 
       searchInput: 'house',
+      savedWrds: ['sample', 'test'],
     };
+  }
+
+  componentDidMount () {
+    // Set the savedWrds array to the localStorage item of savedWords
+    const savedWords = localStorage.getItem('savedWords')
+    this.setState({ savedWrds: JSON.parse(savedWords)});
   }
   
   render () {
     let indSvdWrdContainer = [];
-
+    console.log(this.state.savedWrds)
+    const wordIsSaved = (w) => {
+      // Function to check if word has been saved before
+      const word = this.state.savedWrds.filter(indWord => indWord === w);
+      
+      if (word[0] === this.state.currentWord.word) {
+        this.setState({ wordSaved: true });
+      }
+      else { this.setState({ wordSaved: false }); }
+    } 
+   
+  
     const onChange = (e) => {
       // console.log(e.target.value)
 
@@ -55,8 +73,6 @@ export default class App extends Component {
         let dataAPI;
         await Axios.get(`https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${this.state.currentWord.word}?key=87af984c-5a0d-461a-b285-97a61ea9b8ab`).then(data => dataAPI = data.data[0]);
         
-        
-
         const ants = dataAPI.meta.ants.map(ant => ant);
         const syns = dataAPI.meta.syns.map(syn => syn);
 
@@ -88,6 +104,7 @@ export default class App extends Component {
         this.setState({ dctnryTriggered: true })
         this.setState({ thsrsTriggered: false }) 
         this.setState({ appPalette: '' });
+        wordIsSaved(object.word);
       }
 
       if (e.target.className === 'wordOfDay') {
@@ -100,11 +117,17 @@ export default class App extends Component {
       if (e.target.className === 'saveWrdBtn' || e.target.className === 'saveBtn') {
         // words object { 'Word 1', 'Word 2', 'Word 3' } if word is not there then that 
         this.setState({ wordSaved: true });
+
+        this.setState(prevState => ({ savedWrds: [...prevState.savedWrds, this.state.currentWord.word ] }));
       }
 
       if (e.target.className === 'savedWords') {
         const wrapper = this.wrdsWrapperRef.current;
         wrapper.classList.toggle('active');
+      }
+
+      if (e.target.className === 'indSavedWrd') {
+
       }
 
       if (e.target.className === 'searchbarBtn') {
@@ -115,13 +138,15 @@ export default class App extends Component {
         let object = {word: this.state.searchInput, type: dataAPI.fl, defs: dataAPI.shortdef, pronounciation: dataAPI.hwi.prs[0].mw, audio: dataAPI.hwi.prs[0].sound}
         this.setState({ currentWord: object });
         this.setState({ mainCompTriggered: true });
+
+        wordIsSaved(object.word);
       }
 
     }
-
+    console.log(this.state.savedWrds)
   
-    for (let i = 0; i < 10; i++) {
-      indSvdWrdContainer.push( <IndSavedWord onClick={onClick} key={'word ' + i} /> );
+    for (let i = 0; i < this.state.savedWrds.length; i++) {
+      indSvdWrdContainer.push( <IndSavedWord onClick={onClick} word={this.state.savedWrds[i]} key={'word ' + i} /> );
     }
 
     
@@ -151,7 +176,7 @@ export default class App extends Component {
 
           {this.state.wrdOfDayTriggered ? <WordOfTheDay onClick={onClick}/> : null }
 
-          {this.state.mainCompTriggered ? <MainWordView info={this.state.currentWord} thsrsInfo={this.state.thsrsWord} onClick={onClick} state={this.state.dctnryTriggered} isThsrsOn={this.state.thsrsTriggered} palette={this.state.appPalette}/> : null}
+          {this.state.mainCompTriggered ? <MainWordView info={this.state.currentWord} thsrsInfo={this.state.thsrsWord} onClick={onClick} state={this.state.dctnryTriggered} isWrdSaved={this.state.wordSaved} isThsrsOn={this.state.thsrsTriggered} palette={this.state.appPalette}/> : null}
           
           {/* <WordOfTheDay onClick={onClick}/> */}
           
