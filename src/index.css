@@ -350,10 +350,11 @@ body {
   position: relative;
   bottom: 25px;
   left: 2rem;
-  width: 50rem;
-  height: 9rem;
+  width: 52rem;
+  height: 9.7rem;
   padding: 0px 10px;
   /* outline: 1px solid black; */
+  box-shadow: 1px 1px 2px #e2dfdf, -1px -1px 2px #e2dfdf;
   display: grid;
   grid-template-columns: repeat(5, 10.5rem);
   grid-template-rows: 35px 35px 35px 35px;
@@ -380,6 +381,17 @@ body {
   background: none;
 }
 
+.noWrdPresent {
+  position: relative;
+  left: 5rem;
+  width: 40rem;
+  height: 6rem;
+  text-align: center;
+  letter-spacing: 5px;
+  padding: 2px 5px; 
+  /* outline: 1px solid black; */
+}
+
 .antnymHeading {
   position: relative;
   left: 2rem;
@@ -396,10 +408,11 @@ body {
   position: relative;
   left: 2rem;
   bottom: 3.5rem;
-  width: 50rem;
-  height: 9rem;
+  width: 52rem;
+  height: 9.7rem;
   padding: 0px 10px;
   /* outline: 1px solid black; */
+  box-shadow: 1px 1px 2px #e2dfdf, -1px -1px 2px #e2dfdf;
   display: grid;
   grid-template-columns: repeat(5, 10.5rem);
   grid-template-rows: 35px 35px 35px 35px;

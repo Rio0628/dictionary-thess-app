@@ -75,6 +75,21 @@ export default class App extends Component {
         
       }
 
+      if (e.target.className === 'synonymWrd' || e.target.className === 'antnymWrd') {
+        let dataAPI, object;
+    
+        await Axios.get(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${e.target.getAttribute('name')}?key=b2d6053e-0412-4ae8-b6a0-a0ff8a827bac`).then(data => dataAPI = data.data[0]);
+    
+        try {
+          object = {word: e.target.getAttribute('name'), type: dataAPI.fl, defs: dataAPI.shortdef, pronounciation: dataAPI.hwi.prs[0].mw, audio: dataAPI.hwi.prs[0].sound}
+        } catch(e) { alert(e) }
+        
+        this.setState({ currentWord: object });
+        this.setState({ dctnryTriggered: true })
+        this.setState({ thsrsTriggered: false }) 
+        this.setState({ appPalette: '' });
+      }
+
       if (e.target.className === 'wordOfDay') {
         this.setState({ appPalette: '' });
         this.setState({ thsrsTriggered: false });

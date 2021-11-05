@@ -28,19 +28,15 @@ const MainWordView = (props) => {
         if (props.thsrsInfo.ants) { antsPresent = true }
     }
     
-    console.log(props.thsrsInfo)
-    console.log(synsPresent)
-    console.log(antsPresent)
-        
     if (synsPresent) {
         if (props.thsrsInfo.syns.length >= 20) {
             for (let i = 0; i < 20; i++) {
-                synContainer.push( <p className='synonymWrd' onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.syns[i]}</p> );
+                synContainer.push( <p className='synonymWrd' name={props.thsrsInfo.syns[i]} onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.syns[i]}</p> );
             }
         }
         else {
             for (let i = 0; i < props.thsrsInfo.syns.length; i++) {
-                synContainer.push( <p className='synonymWrd' onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.syns[i]}</p> );
+                synContainer.push( <p className='synonymWrd' name={props.thsrsInfo.syns[i]} onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.syns[i]}</p> );
             }
         }
             
@@ -49,41 +45,15 @@ const MainWordView = (props) => {
     if (antsPresent) {
         if (props.thsrsInfo.ants.length >= 20) {
             for (let i = 0; i < 20; i++) {
-                antContainer.push( <p className='antnymWrd' onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.ants[i]}</p> );
+                antContainer.push( <p className='antnymWrd' name={props.thsrsInfo.ants[i]} onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.ants[i]}</p> );
             }
         }
         else {
             for (let i = 0; i < props.thsrsInfo.ants.length; i++) {
-                antContainer.push( <p className='antnymWrd' onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.ants[i]}</p> );
+                antContainer.push( <p className='antnymWrd' name={props.thsrsInfo.ants[i]} onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.ants[i]}</p> );
             }
         }
     }
-
-
-    // if (props.isThsrsOn) {
-        
-    //     if (props.thsrsInfo.syns.length >= 20) {
-    //         for (let i = 0; i < 20; i++) {
-    //             synContainer.push( <p className='synonymWrd' onClick={props.onClick} key={'key ' + i}>Synonym {i + 1}</p> );
-    //         }
-    //     }
-    //     else {
-    //         for (let i = 0; i < props.thsrsInfo.syns.length; i++) {
-    //             synContainer.push( <p className='synonymWrd' onClick={props.onClick} key={'key ' + i}>Synonym {i + 1}</p> );
-    //         }
-    //     }
-    
-    //     if (props.thsrsInfo.ants.length >= 20) {
-    //         for (let i = 0; i < 20; i++) {
-    //             antContainer.push( <p className='antonymWrd' onClick={props.onClick} key={'key ' + i}>Synonym {i + 1}</p> );
-    //         }
-    //     }
-    //     else {
-    //         for (let i = 0; i < props.thsrsInfo.ants.length; i++) {
-    //             antContainer.push( <p className='antonymWrd' onClick={props.onClick} key={'key ' + i}>Synonym {i + 1}</p> );
-    //         }
-    //     }
-    // }
     
 
     return (
@@ -125,12 +95,12 @@ const MainWordView = (props) => {
 
                     <h3 className='synmsHeading'>Synonyms</h3>
                     <div className='synmsContainer'>
-                        {synContainer}
+                        {synsPresent ? synContainer : <h1 className='noWrdPresent'>No Synonyms are Present.</h1>}
                     </div>
 
                     <h3 className='antnymHeading'>Antonyms</h3>
                     <div className='antnymContainer'>
-                        {antContainer}
+                        {antsPresent ? antContainer : <h1 className='noWrdPresent'>No Antonyms are Present.</h1>}
                     </div>
                 </div>
             }
