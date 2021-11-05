@@ -77,12 +77,12 @@ const MainWordView = (props) => {
 
                     <p className='mainWrdDef'>{props.info.defs[0]}</p>
                 
-                    {props.info.defs.length > 1 ? 
+                    {props.info.defs.length - 1 > 1 ? 
                         <div className='otherMeaningsCntr'>
                             <h3 className='otherMeaningsWrd'>Other Meanings of {capitalize(props.info.word)}</h3>
                             {otherWrdsCntr}
                         </div>
-                    : null}
+                    : <h1 className='noOtherMeaningsPrsnt'>There are not other definitions of {capitalize(props.info.word)} present.</h1>}
                     
                     
                 </div>

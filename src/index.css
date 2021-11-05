@@ -21,6 +21,23 @@ body {
   /* outline: 1px solid red; */
 }
 
+.previewHeading {
+  position: relative;
+  top: 15rem;
+  left: 8rem;
+  height: 8rem;
+  font-size: 2.5rem;
+  text-align: center;
+  letter-spacing: 5px;
+  padding: 2px 5px;
+  /* width: 30rem; */
+  /* outline: 1px solid black; */
+}
+
+.previewHeading.wordDayOn {
+  left: 200rem;
+}
+
 /* -- HEADBAR STYLES -- */
 
 .headbarContainer {
@@ -271,6 +288,18 @@ body {
   width: 63rem;
   font-size: 22px;
   /* outline: 1px solid blue; */
+}
+
+.noOtherMeaningsPrsnt {
+  position: relative;
+  left: 0rem;
+  /* top: 2rem; */
+  height: 6rem;
+  text-align: center;
+  letter-spacing: 5px;
+  padding: 10px;
+  box-shadow: 0px 1px 2px #e2dfdf, 0px -1px 2px #e2dfdf;
+  /* border-top: 1px solid black; */
 }
 
 .otherMeaningsCntr {

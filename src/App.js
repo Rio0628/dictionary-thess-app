@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AsyncStorage from 'react';
 import Axios from 'axios';
 import randomWords from 'random-words';
 import searchIcon from './images/searchIcon.png';
@@ -20,23 +21,21 @@ export default class App extends Component {
       wordSaved: false, 
       searchInput: 'house',
       wrdOfDay: '',
-      savedWrds: ['sample', 'test'],
+      savedWrds: ['sample', 'test', 'code', 'program'],
     };
   }
 
   componentDidMount () {
-    // Set the savedWrds array to the localStorage item of savedWords
-    const savedWords = sessionStorage.getItem('savedWords')
-    this.setState({ savedWrds: JSON.parse(savedWords)});
-
+  
     const word = randomWords();
     this.setState({ wrdOfDay: word });
   }
+
   
   render () {
     let indSvdWrdContainer = [];
-    
-    console.log(this.state.wrdOfDay)
+    // window.localStorage.setItem('savedWords', JSON.stringify(this.state.savedWrds));
+    console.log(this.state.savedWrds)
 
     const wordIsSaved = (w) => {
       // Function to check if word has been saved before
@@ -47,6 +46,13 @@ export default class App extends Component {
       }
       else { this.setState({ wordSaved: false }); }
     } 
+
+    const wrdDayOn = () => {
+      if (this.state.wrdOfDayTriggered) {
+        return 'wordDayOn'
+      }
+      else return ''
+    }
   
     const onChange = (e) => {
       // console.log(e.target.value)
@@ -139,7 +145,6 @@ export default class App extends Component {
 
         this.setState(prevState => ({ savedWrds: [...prevState.savedWrds, this.state.currentWord.word ] }));
 
-        await sessionStorage.setItem('savedWords', JSON.stringify(this.state.savedWrds));
       }
 
       if (e.target.className === 'savedWords') {
@@ -182,7 +187,6 @@ export default class App extends Component {
       }
 
     }
-    console.log(this.state.savedWrds)
   
     for (let i = 0; i < this.state.savedWrds.length; i++) {
       indSvdWrdContainer.push( <IndSavedWord onClick={onClick} word={this.state.savedWrds[i]} key={'word ' + i} /> );
@@ -215,8 +219,10 @@ export default class App extends Component {
 
           {this.state.wrdOfDayTriggered ? <WordOfTheDay onClick={onClick}/> : null }
 
-          {this.state.mainCompTriggered ? <MainWordView info={this.state.currentWord} thsrsInfo={this.state.thsrsWord} onClick={onClick} state={this.state.dctnryTriggered} isWrdSaved={this.state.wordSaved} isThsrsOn={this.state.thsrsTriggered} palette={this.state.appPalette}/> : null}
+          {this.state.mainCompTriggered ? <MainWordView info={this.state.currentWord} thsrsInfo={this.state.thsrsWord} onClick={onClick} state={this.state.dctnryTriggered} isWrdSaved={this.state.wordSaved} isThsrsOn={this.state.thsrsTriggered} palette={this.state.appPalette}/> : <h1 className={'previewHeading ' + wrdDayOn()}>Search a Word to View its Definition</h1>}
           
+          {/* {!this.state.mainCompTriggered || !this.state.wrdOfDayTriggered ? <h1>Hello</h1> : null} */}
+
           {/* <WordOfTheDay onClick={onClick}/> */}
           
         </div>
