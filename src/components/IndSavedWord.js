@@ -10,7 +10,7 @@ const IndSavedWord = (props) => {
     return (
         <div className='indSavedWrdCntr'>
             <p className='indSavedWrd' name={props.word} onClick={props.onClick}>{capitalize(props.word)}</p>
-            <p className='removeBtn'>X</p>
+            <p className='removeBtn' name={props.word} onClick={props.onClick}>X</p>
         </div>
         
     )

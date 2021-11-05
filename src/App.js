@@ -24,7 +24,7 @@ export default class App extends Component {
 
   componentDidMount () {
     // Set the savedWrds array to the localStorage item of savedWords
-    const savedWords = localStorage.getItem('savedWords')
+    const savedWords = sessionStorage.getItem('savedWords')
     this.setState({ savedWrds: JSON.parse(savedWords)});
   }
   
@@ -40,7 +40,6 @@ export default class App extends Component {
       }
       else { this.setState({ wordSaved: false }); }
     } 
-   
   
     const onChange = (e) => {
       // console.log(e.target.value)
@@ -114,11 +113,13 @@ export default class App extends Component {
         this.setState({ wrdOfDayTriggered: true });
       }
 
-      if (e.target.className === 'saveWrdBtn' || e.target.className === 'saveBtn') {
+      if (e.target.className === 'saveWrdBtn ' || e.target.className === 'saveBtn ') {
         // words object { 'Word 1', 'Word 2', 'Word 3' } if word is not there then that 
         this.setState({ wordSaved: true });
 
         this.setState(prevState => ({ savedWrds: [...prevState.savedWrds, this.state.currentWord.word ] }));
+
+        await sessionStorage.setItem('savedWords', JSON.stringify(this.state.savedWrds));
       }
 
       if (e.target.className === 'savedWords') {
@@ -127,7 +128,25 @@ export default class App extends Component {
       }
 
       if (e.target.className === 'indSavedWrd') {
+        let dataAPI, object;
 
+        await Axios.get(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${e.target.getAttribute('name')}?key=b2d6053e-0412-4ae8-b6a0-a0ff8a827bac`).then(data => dataAPI = data.data[0]);
+    
+        try {
+          object = {word: e.target.getAttribute('name'), type: dataAPI.fl, defs: dataAPI.shortdef, pronounciation: dataAPI.hwi.prs[0].mw, audio: dataAPI.hwi.prs[0].sound}
+        } catch(e) { alert(e) }
+        
+        this.setState({ currentWord: object });
+        this.setState({ dctnryTriggered: true })
+        this.setState({ thsrsTriggered: false }) 
+        this.setState({ appPalette: '' });
+        if (!this.state.mainCompTriggered) { this.setState({ mainCompTriggered: true }); }
+      }
+
+      if (e.target.className === 'removeBtn') {
+        let words = this.state.savedWrds.filter(word => word !== e.target.getAttribute('name'));
+        this.setState({ savedWrds: words });
+        await sessionStorage.setItem('savedWords', JSON.stringify(this.state.savedWrds));
       }
 
       if (e.target.className === 'searchbarBtn') {

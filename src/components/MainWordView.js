@@ -9,7 +9,12 @@ const MainWordView = (props) => {
         return s.charAt(0).toUpperCase() + s.slice(1);
     }
     
-    // console.log(capitalize(props.info.word))
+    const clrSaveButton = () => {
+        if (props.isWrdSaved) {
+            return 'saved';
+        }
+        else return '';
+    }
 
     if (props.info.defs.length > 3) {
         for (let i = 1; i <= 3; i++) {
@@ -65,7 +70,7 @@ const MainWordView = (props) => {
                     <div className='mainInfoWrd'>
                         <h2 className='searchedWord'>{capitalize(props.info.word)}</h2>
                         <div className='audioWord' onClick={props.onClick}></div>
-                        <div className='saveWrdBtn' onClick={props.onClick}>{props.isWrdSaved ? 'saved' : 'save'}</div>
+                        <div className={'saveWrdBtn ' + clrSaveButton()} onClick={props.onClick}>{props.isWrdSaved ? 'saved' : 'save'}</div>
                         <h3 className='prnctnWord'>[ {props.info.pronounciation} ]</h3>
                     </div>
                     <p className='typeWrd'>{capitalize(props.info.type)}</p>
@@ -88,7 +93,7 @@ const MainWordView = (props) => {
                     <div className='mainInfoWrd'>
                         <h2 className='searchedWord'>{capitalize(props.info.word)}</h2>
                         <div className='audioWord' onClick={props.onClick}></div>
-                        <div className='saveWrdBtn' onClick={props.onClick}>save</div>
+                        <div className={'saveBtn' + clrSaveButton()} onClick={props.onClick}>{props.isWrdSaved ? 'saved' : 'save'}</div>
                         <h3 className='prnctnWord'>[ {props.info.pronounciation} ]</h3>
                     </div>
                     <p className='typeWrd'>{capitalize(props.info.type)}</p>

@@ -233,7 +233,7 @@ body {
   outline: 1px solid gray;
 }
 
-.saveWrdBtn:hover {
+.saveWrdBtn.saved, .saveWrdBtn:hover {
   outline: none;
   background: #e2dfdf;
 }
@@ -503,7 +503,7 @@ body {
   outline: 1px solid gray;
 }
 
-.saveBtn:hover {
+.saveBtn.saved, .saveBtn:hover {
   outline: none;
   background: #e2dfdf;
 }
@@ -720,6 +720,11 @@ body {
   border-radius: 10px;
 }
 
+.indSavedWrdCntr {
+  display: flex;
+  /* outline: 1px solid black; */
+}
+
 .indSavedWrd {
   position: relative;
   left: 2.2rem;
@@ -736,13 +741,14 @@ body {
   text-decoration: underline;
 }
 
-/* savedWrdsContainer */
-
-/* 
-const IndSavedWord = () => {
-    return (
-        <p className='indSavedWrd'>Saved Word</p>
-    )
+.removeBtn {
+  position: relative;
+  bottom: 2px;
+  font-weight: 600;
+  cursor: pointer;
+  /* outline: 1px solid black; */
 }
 
-export default IndSavedWord; */
+.removeBtn:hover {
+  transform: scale(1.1);
+}
