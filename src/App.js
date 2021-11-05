@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import randomWords from 'random-words';
 import searchIcon from './images/searchIcon.png';
 import MainWordView from './components/MainWordView';
 import WordOfTheDay from './components/WordOfTheDay';
@@ -18,6 +19,7 @@ export default class App extends Component {
       wrdOfDayTriggered: false,
       wordSaved: false, 
       searchInput: 'house',
+      wrdOfDay: '',
       savedWrds: ['sample', 'test'],
     };
   }
@@ -26,11 +28,16 @@ export default class App extends Component {
     // Set the savedWrds array to the localStorage item of savedWords
     const savedWords = sessionStorage.getItem('savedWords')
     this.setState({ savedWrds: JSON.parse(savedWords)});
+
+    const word = randomWords();
+    this.setState({ wrdOfDay: word });
   }
   
   render () {
     let indSvdWrdContainer = [];
-    console.log(this.state.savedWrds)
+    
+    console.log(this.state.wrdOfDay)
+
     const wordIsSaved = (w) => {
       // Function to check if word has been saved before
       const word = this.state.savedWrds.filter(indWord => indWord === w);
@@ -61,6 +68,19 @@ export default class App extends Component {
         this.setState({ dctnryTriggered: true })
         this.setState({ thsrsTriggered: false }) 
         this.setState({ appPalette: '' });
+      }
+
+      if (e.target.className === 'suggestWord') {
+        const word = randomWords();
+        let dataAPI, object;
+        
+        await Axios.get(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=b2d6053e-0412-4ae8-b6a0-a0ff8a827bac`).then(data => dataAPI = data.data[0]);
+    
+        try {
+          object = {word: word, type: dataAPI.fl, defs: dataAPI.shortdef, pronounciation: dataAPI.hwi.prs[0].mw, audio: dataAPI.hwi.prs[0].sound}
+        } catch(e) { alert(e) }
+        
+        this.setState({ currentWord: object });
       }
 
       if (e.target.className === 'suggestWord') {
