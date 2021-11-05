@@ -2,34 +2,89 @@ import React from  'react';
 import OtherDefsWrd from './OtherDefsWrd';
 
 const MainWordView = (props) => {
-    let synContainer = [], antContainer = [], otherWrdsCntr = [];
+    let synContainer = [], antContainer = [], otherWrdsCntr = [], synsPresent = false, antsPresent = false;
     
     const capitalize = (s) => {
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1);
     }
     
-    console.log(capitalize(props.info.word))
+    // console.log(capitalize(props.info.word))
 
     if (props.info.defs.length > 3) {
         for (let i = 1; i <= 3; i++) {
-            otherWrdsCntr.push( <OtherDefsWrd number={i} def={props.info.defs[i]} /> );
+            otherWrdsCntr.push( <OtherDefsWrd number={i} def={props.info.defs[i]} key={'Def ' + i}/> );
         }
     }
     else {
         for (let i = 1; i < props.info.defs.length; i++) {
-            otherWrdsCntr.push( <OtherDefsWrd number={i} def={props.info.defs[i]} /> );
+            otherWrdsCntr.push( <OtherDefsWrd number={i} def={props.info.defs[i]} key={'Def ' + i}/> );
         }
     }
+
+    // Conditionals to see if there are synonyms and antonyms 
+    if (props.isThsrsOn) {
+        if (props.thsrsInfo.syns) { synsPresent = true }
+        if (props.thsrsInfo.ants) { antsPresent = true }
+    }
     
-    
-    for (let i = 0; i < 5; i++) {
-        synContainer.push( <p className='synonymWrd' onClick={props.onClick} key={'key ' + i}>Synonym {i + 1}</p> );
+    console.log(props.thsrsInfo)
+    console.log(synsPresent)
+    console.log(antsPresent)
+        
+    if (synsPresent) {
+        if (props.thsrsInfo.syns.length >= 20) {
+            for (let i = 0; i < 20; i++) {
+                synContainer.push( <p className='synonymWrd' onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.syns[i]}</p> );
+            }
+        }
+        else {
+            for (let i = 0; i < props.thsrsInfo.syns.length; i++) {
+                synContainer.push( <p className='synonymWrd' onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.syns[i]}</p> );
+            }
+        }
+            
     }
 
-    for (let i = 0; i < 5; i++) {
-        antContainer.push( <p className= 'antnymWrd' onClick={props.onClick} key={'key ' + i}>Antonym {i + 1}</p> );
+    if (antsPresent) {
+        if (props.thsrsInfo.ants.length >= 20) {
+            for (let i = 0; i < 20; i++) {
+                antContainer.push( <p className='antnymWrd' onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.ants[i]}</p> );
+            }
+        }
+        else {
+            for (let i = 0; i < props.thsrsInfo.ants.length; i++) {
+                antContainer.push( <p className='antnymWrd' onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.ants[i]}</p> );
+            }
+        }
     }
+
+
+    // if (props.isThsrsOn) {
+        
+    //     if (props.thsrsInfo.syns.length >= 20) {
+    //         for (let i = 0; i < 20; i++) {
+    //             synContainer.push( <p className='synonymWrd' onClick={props.onClick} key={'key ' + i}>Synonym {i + 1}</p> );
+    //         }
+    //     }
+    //     else {
+    //         for (let i = 0; i < props.thsrsInfo.syns.length; i++) {
+    //             synContainer.push( <p className='synonymWrd' onClick={props.onClick} key={'key ' + i}>Synonym {i + 1}</p> );
+    //         }
+    //     }
+    
+    //     if (props.thsrsInfo.ants.length >= 20) {
+    //         for (let i = 0; i < 20; i++) {
+    //             antContainer.push( <p className='antonymWrd' onClick={props.onClick} key={'key ' + i}>Synonym {i + 1}</p> );
+    //         }
+    //     }
+    //     else {
+    //         for (let i = 0; i < props.thsrsInfo.ants.length; i++) {
+    //             antContainer.push( <p className='antonymWrd' onClick={props.onClick} key={'key ' + i}>Synonym {i + 1}</p> );
+    //         }
+    //     }
+    // }
+    
 
     return (
         <div className='mainWordContainer'>
@@ -61,12 +116,12 @@ const MainWordView = (props) => {
                     <div className='dctnryBtn' onClick={props.onClick}>Dictionary</div>
                     <div className='thsrsBtn' onClick={props.onClick}>Thesaurus</div>
                     <div className='mainInfoWrd'>
-                        <h2 className='searchedWord'>Sample Word</h2>
+                        <h2 className='searchedWord'>{capitalize(props.info.word)}</h2>
                         <div className='audioWord' onClick={props.onClick}></div>
                         <div className='saveWrdBtn' onClick={props.onClick}>save</div>
-                        <h3 className='prnctnWord'>[ sam-puhl, sahm- ]</h3>
+                        <h3 className='prnctnWord'>[ {props.info.pronounciation} ]</h3>
                     </div>
-                    <p className='typeWrd'>Noun</p>
+                    <p className='typeWrd'>{capitalize(props.info.type)}</p>
 
                     <h3 className='synmsHeading'>Synonyms</h3>
                     <div className='synmsContainer'>

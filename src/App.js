@@ -51,10 +51,28 @@ export default class App extends Component {
         this.setState({ wrdOfDayTriggered: false });
       }
 
-      if (e.target.className === 'thsrsBtn') { 
+      if (e.target.className === 'thsrsBtn') {
+        let dataAPI;
+        await Axios.get(`https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${this.state.currentWord.word}?key=87af984c-5a0d-461a-b285-97a61ea9b8ab`).then(data => dataAPI = data.data[0]);
+        
+        
+
+        const ants = dataAPI.meta.ants.map(ant => ant);
+        const syns = dataAPI.meta.syns.map(syn => syn);
+
+        for (let i = 0; i < ants.length; i++) {
+          Array.prototype.push.apply(ants[0], ants[i + 1]);
+        }
+        for (let i = 0; i < syns.length; i++) {
+          Array.prototype.push.apply(syns[0], syns[i + 1]);
+        }
+
+        let object = {syns: syns[0], ants: ants[0]};
+        this.setState({ thsrsWord: object })
         this.setState({ thsrsTriggered: true });
         this.setState({ dctnryTriggered: false })
         this.setState({ appPalette: 'thesaurus' });
+        
       }
 
       if (e.target.className === 'wordOfDay') {
@@ -83,10 +101,10 @@ export default class App extends Component {
         this.setState({ currentWord: object });
         this.setState({ mainCompTriggered: true });
       }
+
     }
 
-    console.log(this.state.currentWord);
-
+  
     for (let i = 0; i < 10; i++) {
       indSvdWrdContainer.push( <IndSavedWord onClick={onClick} key={'word ' + i} /> );
     }
@@ -118,7 +136,7 @@ export default class App extends Component {
 
           {this.state.wrdOfDayTriggered ? <WordOfTheDay onClick={onClick}/> : null }
 
-          {this.state.mainCompTriggered ? <MainWordView info={this.state.currentWord} onClick={onClick} state={this.state.dctnryTriggered} palette={this.state.appPalette}/> : null}
+          {this.state.mainCompTriggered ? <MainWordView info={this.state.currentWord} thsrsInfo={this.state.thsrsWord} onClick={onClick} state={this.state.dctnryTriggered} isThsrsOn={this.state.thsrsTriggered} palette={this.state.appPalette}/> : null}
           
           {/* <WordOfTheDay onClick={onClick}/> */}
           

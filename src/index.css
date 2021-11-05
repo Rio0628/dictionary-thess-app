@@ -252,14 +252,14 @@ body {
 
 .typeWrd {
   position: relative;
-  left: 2.2rem;
+  left: 4.5rem;
   bottom: 10px;
   width: 13rem;
   font-size: 22px;
   font-weight: 600;
   text-align: center;
   letter-spacing: 3px;
-  /* outline: k1px solid red; */
+  /* outline: 1px solid red; */
 }
 
 .mainWrdDef {
@@ -364,9 +364,10 @@ body {
   width: 9rem;
   padding: 2px 5px;
   font-weight: 600;
-  outline: 1px solid gray;
+  /* outline: 1px solid gray; */
+  box-shadow: 0px 1px 0px #e2dfdf;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 2px;
 }
 
 .synonymWrd:hover, .antnymWrd:hover {
@@ -382,6 +383,7 @@ body {
 .antnymHeading {
   position: relative;
   left: 2rem;
+  bottom: 2rem;
   width: 14rem;
   text-align: center;
   font-size: 1.8rem;
@@ -393,7 +395,7 @@ body {
 .antnymContainer {
   position: relative;
   left: 2rem;
-  bottom: 1.5rem;
+  bottom: 3.5rem;
   width: 50rem;
   height: 9rem;
   padding: 0px 10px;
