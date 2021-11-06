@@ -2,6 +2,7 @@ import React from 'react';
 
 const IndSavedWord = (props) => {
 
+    // Capitalized the first letter of each word 
     const capitalize = (s) => {
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1);

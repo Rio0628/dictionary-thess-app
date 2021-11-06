@@ -3,11 +3,13 @@ import React from 'react';
 const WordOfTheDay = (props) => {
     let synContainer = [], stemsContainer = [], synsPresent = false, stemsPresent = false;
 
+    // Capitalized the first letter of each word 
     const capitalize = (s) => {
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1);
     }
 
+    // Changes the style of a saved word 
     const clrSaveButton = () => {
         if (props.isWrdSaved) {
             return 'saved';
@@ -15,10 +17,12 @@ const WordOfTheDay = (props) => {
         else return '';
     }
 
+    // Sets boolean values to true if there are synnonyms or stems present 
     if (props.thsrsInfo.syns) { synsPresent = true }
     if (props.info.stems) { stemsPresent = true }
 
     if (stemsPresent) {
+        // If stems are present it will display them (With 15 being the max)
         if (props.info.stems.length >= 15) {
             for (let i = 0; i < 15; i++) {
                 stemsContainer.push( <p className='stemWrd' name={props.info.stems[i]} onClick={props.onClick} key={'key ' + i}>{props.info.stems[i]}</p> );
@@ -32,6 +36,7 @@ const WordOfTheDay = (props) => {
     }
     
     if (synsPresent) {
+        // If synnonyms are present it will display them (With 15 being the max)
         if (props.thsrsInfo.syns.length >= 15) {
             for (let i = 0; i < 15; i++) {
                 synContainer.push( <p className='synonymWrd' name={props.thsrsInfo.syns[i]} onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.syns[i]}</p> );
