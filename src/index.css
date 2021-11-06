@@ -461,7 +461,7 @@ body {
   position: relative;
   left: 30rem;
   top: 0px;
-  outline: 1px solid black;
+  /* outline: 1px solid black; */
 }
 
 .wordHeading {

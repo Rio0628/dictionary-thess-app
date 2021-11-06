@@ -18,8 +18,8 @@ export default class App extends Component {
       thsrsTriggered: false, 
       wrdOfDayTriggered: false,
       wordSaved: false, 
-      searchInput: 'house',
-      wrdOfDay: {word: 'of', date: '5-10-2021'},
+      searchInput: 'house', // Remember to take this out
+      wrdOfDay: {word: 'test', date: '5-10-2021'},
       savedWrds: ['sample', 'test', 'code', 'program'],
     };
   }
@@ -186,7 +186,8 @@ export default class App extends Component {
         } catch(e) { alert(e) }
         
         this.setState({ currentWord: object });
-        this.setState({ dctnryTriggered: true })
+        this.setState({ mainCompTriggered: true })
+        this.setState({ wrdOfDayTriggered: false });
         this.setState({ thsrsTriggered: false }) 
         this.setState({ appPalette: '' });
         if (!this.state.mainCompTriggered) { this.setState({ mainCompTriggered: true }); }
@@ -202,7 +203,7 @@ export default class App extends Component {
         let dataAPI;
     
         await Axios.get(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${this.state.searchInput}?key=b2d6053e-0412-4ae8-b6a0-a0ff8a827bac`).then(data => dataAPI = data.data[0]);
-       
+        console.log(dataAPI);
         let object = {word: this.state.searchInput, type: dataAPI.fl, defs: dataAPI.shortdef, pronounciation: dataAPI.hwi.prs[0].mw, audio: dataAPI.hwi.prs[0].sound}
         this.setState({ currentWord: object });
         this.setState({ mainCompTriggered: true });
@@ -210,8 +211,18 @@ export default class App extends Component {
         wordIsSaved(object.word);
       }
 
+      if (e.target.className === 'audioWrd' || e.target.className === 'audioWord') {
+        let frstLttr = this.state.currentWord.word.split('');
+
+        let url = `https://media.merriam-webster.com/audio/prons/en/us/mp3/${frstLttr[0]}/${this.state.currentWord.audio.audio}.mp3`;
+        // let url = `https://media.merriam-webster.com/audio/prons/en/us/mp3/p/dog00002.mp3`;
+        let audio = new Audio(url);
+        audio.play().catch(error => alert('Audio for Pronounciation not Available.'))
+      }
+
     }
   
+
     for (let i = 0; i < this.state.savedWrds.length; i++) {
       indSvdWrdContainer.push( <IndSavedWord onClick={onClick} word={this.state.savedWrds[i]} key={'word ' + i} /> );
     }
@@ -241,7 +252,7 @@ export default class App extends Component {
 
         <div className='mainViewDctnry'>
 
-          {this.state.wrdOfDayTriggered ? <WordOfTheDay info={this.state.currentWord} thsrsInfo={this.state.thsrsWord} onClick={onClick}/> : null }
+          {this.state.wrdOfDayTriggered ? <WordOfTheDay info={this.state.currentWord} thsrsInfo={this.state.thsrsWord} isWrdSaved={this.state.wordSaved} onClick={onClick}/> : null }
 
           {this.state.mainCompTriggered ? <MainWordView info={this.state.currentWord} thsrsInfo={this.state.thsrsWord} onClick={onClick} state={this.state.dctnryTriggered} isWrdSaved={this.state.wordSaved} isThsrsOn={this.state.thsrsTriggered} palette={this.state.appPalette}/> : <h1 className={'previewHeading ' + wrdDayOn()}>Search a Word to View its Definition</h1>}
           

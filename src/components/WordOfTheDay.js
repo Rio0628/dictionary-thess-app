@@ -8,6 +8,13 @@ const WordOfTheDay = (props) => {
         return s.charAt(0).toUpperCase() + s.slice(1);
     }
 
+    const clrSaveButton = () => {
+        if (props.isWrdSaved) {
+            return 'saved';
+        }
+        else return '';
+    }
+
     if (props.thsrsInfo.syns) { synsPresent = true }
     if (props.info.stems) { stemsPresent = true }
 
@@ -44,7 +51,7 @@ const WordOfTheDay = (props) => {
                 <div className='prnctnWrd'>[ {props.info.pronounciation} ]</div>
                 <div className='audioWrd' onClick={props.onClick}></div>
                 <div className='lineBreak'></div>
-                <div className='saveBtn' onClick={props.onClick}>Save</div>
+                <div className={'saveBtn ' + clrSaveButton()}  onClick={props.onClick}>{props.isWrdSaved ? 'saved' : 'save'}</div>
             </div>
             <p className='typeWrd'>{capitalize(props.info.type)}</p>
 
