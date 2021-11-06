@@ -43,8 +43,7 @@ const MainWordView = (props) => {
             for (let i = 0; i < props.thsrsInfo.syns.length; i++) {
                 synContainer.push( <p className='synonymWrd' name={props.thsrsInfo.syns[i]} onClick={props.onClick} key={'key ' + i}>{props.thsrsInfo.syns[i]}</p> );
             }
-        }
-            
+        }     
     }
 
     if (antsPresent) {

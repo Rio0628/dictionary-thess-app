@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import AsyncStorage from 'react';
 import Axios from 'axios';
 import randomWords from 'random-words';
 import searchIcon from './images/searchIcon.png';
@@ -20,22 +19,26 @@ export default class App extends Component {
       wrdOfDayTriggered: false,
       wordSaved: false, 
       searchInput: 'house',
-      wrdOfDay: '',
+      wrdOfDay: {word: 'of', date: '5-10-2021'},
       savedWrds: ['sample', 'test', 'code', 'program'],
     };
   }
 
   componentDidMount () {
-  
-    const word = randomWords();
-    this.setState({ wrdOfDay: word });
-  }
+    const date = new Date();
 
+    const wrdOfDay = {word: randomWords(), date: date.getDay() + '-' + date.getMonth() + '-' + date.getFullYear()}
+    // console.log(wrdOfDay);
+
+    if (this.state.wrdOfDay.date !== wrdOfDay.date) {
+      this.setState({ wrdOfDay: wrdOfDay });
+    }
+    
+    
+  }
   
   render () {
     let indSvdWrdContainer = [];
-    // window.localStorage.setItem('savedWords', JSON.stringify(this.state.savedWrds));
-    console.log(this.state.savedWrds)
 
     const wordIsSaved = (w) => {
       // Function to check if word has been saved before
@@ -80,16 +83,13 @@ export default class App extends Component {
         const word = randomWords();
         let dataAPI, object;
         
-        await Axios.get(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=b2d6053e-0412-4ae8-b6a0-a0ff8a827bac`).then(data => dataAPI = data.data[0]);
-    
         try {
-          object = {word: word, type: dataAPI.fl, defs: dataAPI.shortdef, pronounciation: dataAPI.hwi.prs[0].mw, audio: dataAPI.hwi.prs[0].sound}
+          await Axios.get(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=b2d6053e-0412-4ae8-b6a0-a0ff8a827bac`).then(data => dataAPI = data.data[0]);
         } catch(e) { alert(e) }
         
+        object = {word: word, type: dataAPI.fl, defs: dataAPI.shortdef, pronounciation: dataAPI.hwi.prs[0].mw, audio: dataAPI.hwi.prs[0].sound}
+        
         this.setState({ currentWord: object });
-      }
-
-      if (e.target.className === 'suggestWord') {
         this.setState({ mainCompTriggered: true });
         this.setState({ wrdOfDayTriggered: false });
       }
@@ -116,7 +116,7 @@ export default class App extends Component {
         
       }
 
-      if (e.target.className === 'synonymWrd' || e.target.className === 'antnymWrd') {
+      if (e.target.className === 'synonymWrd' || e.target.className === 'antnymWrd' || e.target.className === 'stemWrd') {
         let dataAPI, object;
     
         await Axios.get(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${e.target.getAttribute('name')}?key=b2d6053e-0412-4ae8-b6a0-a0ff8a827bac`).then(data => dataAPI = data.data[0]);
@@ -126,13 +126,38 @@ export default class App extends Component {
         } catch(e) { alert(e) }
         
         this.setState({ currentWord: object });
-        this.setState({ dctnryTriggered: true })
+        this.setState({ mainCompTriggered: true })
+        this.setState({ wrdOfDayTriggered: false });
         this.setState({ thsrsTriggered: false }) 
         this.setState({ appPalette: '' });
         wordIsSaved(object.word);
       }
 
       if (e.target.className === 'wordOfDay') {
+        let dataAPI, dataAPIthsrs, object;
+        
+        try {
+          await Axios.get(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${this.state.wrdOfDay.word}?key=b2d6053e-0412-4ae8-b6a0-a0ff8a827bac`).then(data => dataAPI = data.data[0]);
+        } catch(e) { alert(e) }
+        
+        object = {word: this.state.wrdOfDay.word, type: dataAPI.fl, defs: dataAPI.shortdef, pronounciation: dataAPI.hwi.prs[0].mw, audio: dataAPI.hwi.prs[0].sound, stems: dataAPI.meta.stems}
+        
+        await Axios.get(`https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${this.state.wrdOfDay.word}?key=87af984c-5a0d-461a-b285-97a61ea9b8ab`).then(data => dataAPIthsrs = data.data[0]);
+        
+        const ants = dataAPIthsrs.meta.ants.map(ant => ant);
+        const syns = dataAPIthsrs.meta.syns.map(syn => syn);
+
+        for (let i = 0; i < ants.length; i++) {
+          Array.prototype.push.apply(ants[0], ants[i + 1]);
+        }
+        for (let i = 0; i < syns.length; i++) {
+          Array.prototype.push.apply(syns[0], syns[i + 1]);
+        }
+
+        let objectThsrs = {syns: syns[0], ants: ants[0]};
+        this.setState({ thsrsWord: objectThsrs })
+
+        this.setState({ currentWord: object });
         this.setState({ appPalette: '' });
         this.setState({ thsrsTriggered: false });
         this.setState({ mainCompTriggered: false })
@@ -140,7 +165,6 @@ export default class App extends Component {
       }
 
       if (e.target.className === 'saveWrdBtn ' || e.target.className === 'saveBtn ') {
-        // words object { 'Word 1', 'Word 2', 'Word 3' } if word is not there then that 
         this.setState({ wordSaved: true });
 
         this.setState(prevState => ({ savedWrds: [...prevState.savedWrds, this.state.currentWord.word ] }));
@@ -178,7 +202,7 @@ export default class App extends Component {
         let dataAPI;
     
         await Axios.get(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${this.state.searchInput}?key=b2d6053e-0412-4ae8-b6a0-a0ff8a827bac`).then(data => dataAPI = data.data[0]);
-    
+       
         let object = {word: this.state.searchInput, type: dataAPI.fl, defs: dataAPI.shortdef, pronounciation: dataAPI.hwi.prs[0].mw, audio: dataAPI.hwi.prs[0].sound}
         this.setState({ currentWord: object });
         this.setState({ mainCompTriggered: true });
@@ -192,7 +216,7 @@ export default class App extends Component {
       indSvdWrdContainer.push( <IndSavedWord onClick={onClick} word={this.state.savedWrds[i]} key={'word ' + i} /> );
     }
 
-    
+    console.log(this.state.currentWord)
 
     return (
       <div className='container'>
@@ -217,7 +241,7 @@ export default class App extends Component {
 
         <div className='mainViewDctnry'>
 
-          {this.state.wrdOfDayTriggered ? <WordOfTheDay onClick={onClick}/> : null }
+          {this.state.wrdOfDayTriggered ? <WordOfTheDay info={this.state.currentWord} thsrsInfo={this.state.thsrsWord} onClick={onClick}/> : null }
 
           {this.state.mainCompTriggered ? <MainWordView info={this.state.currentWord} thsrsInfo={this.state.thsrsWord} onClick={onClick} state={this.state.dctnryTriggered} isWrdSaved={this.state.wordSaved} isThsrsOn={this.state.thsrsTriggered} palette={this.state.appPalette}/> : <h1 className={'previewHeading ' + wrdDayOn()}>Search a Word to View its Definition</h1>}
           

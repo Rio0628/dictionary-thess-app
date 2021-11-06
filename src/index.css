@@ -390,7 +390,7 @@ body {
   grid-template-rows: 35px 35px 35px 35px;
 }
 
-.synonymWrd, .antnymWrd {
+.synonymWrd, .antnymWrd, .stemWrd {
   height: 1.2rem;
   width: 9rem;
   padding: 2px 5px;
@@ -401,12 +401,12 @@ body {
   border-radius: 2px;
 }
 
-.synonymWrd:hover, .antnymWrd:hover {
+.synonymWrd:hover, .antnymWrd:hover, .stemWrd:hover {
   outline: none;
   background: #e2dfdf;
 }
 
-.synonymWrd:active, .antnymWrd:active {
+.synonymWrd:active, .antnymWrd:active, .stemWrd:active {
   outline: 1px solid #758bfd;
   background: none;
 }
@@ -455,6 +455,13 @@ body {
   /* left: 7rem; */
   width: 96rem;
   /* outline: 1px solid red; */
+}
+
+.wrdOfDayCntr .typeWrd{
+  position: relative;
+  left: 30rem;
+  top: 0px;
+  outline: 1px solid black;
 }
 
 .wordHeading {
@@ -540,7 +547,7 @@ body {
 .infoWrdMngContainer {
   position: relative;
   left: 2rem;
-  top: 2rem;
+  top: .5rem;
   width: 80rem;
   height: 10rem;  
   /* outline: 1px solid red; */
@@ -571,17 +578,17 @@ body {
   /* outline: 1px solid blue; */
 }
 
-.exmapleContainer {
+.stemsContainer {
   position: relative;
   left: 2rem;
-  top: 2rem;
+  top: .5rem;
   width: 80rem;
   height: 10rem;  
   /* outline: 1px solid red; */
   box-shadow: 1px 1px 6px #e2dfdf, -1px -1px 6px #e2dfdf;
 }
 
-.exampleHeading {
+.stemsHeading {
   position: relative;
   top: 8px;
   right: 8px;
@@ -593,20 +600,33 @@ body {
   padding: 2px 5px;
 }
 
-.exampleOfWrd {
+.stemsCntr {
   position: relative;
-  top: 4px;
-  left: 12px;
+  bottom: 15px;
+  left: 10px;
+  height: 7rem;
   width: 70rem;
-  height: 3rem;
-  font-size: 22px;
-  padding: 2px 5px;
+  display: grid;
+  grid-template-columns: repeat(5, 10.5rem);
+  grid-template-rows: 35px 35px 35px 35px;
+  /* outline: 1px solid black; */
+}
+
+.noStemsHeading {
+  position: relative;
+  left: 8rem;
+  height: 5rem;
+  width: 60rem;
+  font-size: 1.8rem;
+  text-align: center;
+  letter-spacing: 5px;
+  /* outline: 1px solid red; */
 }
 
 .mainSynonymCntr {
   position: relative;
   left: 2rem;
-  top: 2rem;
+  top: .5rem;
   width: 80rem;
   height: 12rem;  
   box-shadow: 1px 1px 6px #e2dfdf, -1px -1px 6px #e2dfdf;
@@ -633,6 +653,17 @@ body {
   grid-template-columns: repeat(5, 10.5rem);
   grid-template-rows: 35px 35px 35px 35px;
   /* outline: 1px solid black;  */
+}
+
+.noSynsHeading {
+  position: relative;
+  left: 8rem;
+  height: 5rem;
+  width: 60rem;
+  font-size: 1.8rem;
+  text-align: center;
+  letter-spacing: 5px;
+  /* outline: 1px solid red; */
 }
 
 .synDayWrd {

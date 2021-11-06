@@ -16,4 +16,4 @@ const IndSavedWord = (props) => {
     )
 }
 
-export default IndSavedWord;
+export default IndSavedWord; 
